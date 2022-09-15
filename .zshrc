@@ -150,8 +150,8 @@ if [ "$color_prompt" = yes ]; then
     VIRTUAL_ENV_DISABLE_PROMPT=1
 
     # enable syntax-highlighting
-    if [ -f /data/data/com.termux/files/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && [ "$color_prompt" = yes ]; then
-        . /data/data/com.termux/files/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    if [ -f /data/data/com.termux/files/home/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && [ "$color_prompt" = yes ]; then
+        . /data/data/com.termux/files/home/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
         ZSH_HIGHLIGHT_STYLES[default]=none
         ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
@@ -236,7 +236,7 @@ precmd() {
 }
 
 # enable color support of ls, less and man, and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+if [ -x /data/data/com.termux/files/usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
@@ -266,17 +266,11 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
-# enable command-not-found if installed
-if [ -f /etc/zsh_command_not_found ]; then
-    . /etc/zsh_command_not_found
+# enable auto-suggestions based on the history
+if [ -f /data/data/com.termux/files/home/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-a
+    . /data/data/com.termux/files/home/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-aut
+    # change suggestion color
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
 
-
-# for some reasons this line need to be added in order to use sth like "sudo apt or dnf search python*" or else you have to use "sudo apt or dnf search "python*""
-
-unsetopt nomatch
-
-#alias pkexec='pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY'
-
 #neofetch
-#neofetch --ascii /home/silver/Public/logo2 --ascii_colors 2 15
